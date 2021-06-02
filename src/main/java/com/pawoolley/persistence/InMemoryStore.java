@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InMemoryStore {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper().findAndRegisterModules();
     private static final TypeReference LIST_TYPE_REF = new TypeReference<List>() {
     };
     private final Map<String, List> lists = new LinkedHashMap<>();

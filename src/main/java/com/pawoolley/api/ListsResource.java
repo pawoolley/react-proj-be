@@ -16,8 +16,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 
 @Path("lists")
+@Slf4j
 public class ListsResource {
 
     @Inject
@@ -26,6 +28,7 @@ public class ListsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<List> getLists() {
+        log.info("Called getLists");
         return ListDTOConverter.toDTO(service.getLists());
     }
 
@@ -33,6 +36,7 @@ public class ListsResource {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List getList(@PathParam("id") String id) {
+        log.info("Called getList");
         com.pawoolley.model.List list = service.getList(id);
         if (list == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -44,6 +48,7 @@ public class ListsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String createList(List list) {
+        log.info("Called createList");
         if (list == null) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -55,6 +60,7 @@ public class ListsResource {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateList(@PathParam("id") String id, List list) {
+        log.info("Called updateList");
         if (id == null || list == null) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -64,6 +70,7 @@ public class ListsResource {
     @DELETE
     @Path("{id}")
     public void deleteList(@PathParam("id") String id) {
+        log.info("Called deleteList");
         List deleted = ListDTOConverter.toDTO(service.deleteList(id));
         if (deleted == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

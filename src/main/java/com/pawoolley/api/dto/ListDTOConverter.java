@@ -41,6 +41,8 @@ public class ListDTOConverter {
         listDTO.setListItemsCount(CollectionUtils.isEmpty(list.getListItems()) ? 0 : list.getListItems().size());
         listDTO.setListItems(isPopulated ? toDTOs(list.getListItems()) : null);
         listDTO.setName(list.getName());
+        listDTO.setCreatedAt(list.getCreatedAt());
+        listDTO.setUpdatedAt(list.getUpdatedAt());
         return listDTO;
     }
 

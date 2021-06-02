@@ -1,7 +1,7 @@
 package com.pawoolley.model;
 
+import java.time.Instant;
 import java.util.Collection;
-import java.util.UUID;
 import lombok.Data;
 
 @Data
@@ -10,4 +10,6 @@ public class List {
     private String name;
     private String description;
     private Collection<ListItem> listItems;
+    private Instant createdAt;
+    private Instant updatedAt;
 }
