@@ -1,3 +1,8 @@
+/*
+ * Copyright 2022 CloudBees, Inc.
+ * All rights reserved.
+ */
+
 package com.pawoolley.api.dto;
 
 import java.util.Collection;
@@ -12,7 +17,7 @@ public class ListDTOConverter {
         if (CollectionUtils.isEmpty(lists)) {
             return Collections.emptyList();
         }
-        return lists.stream().map(list -> toDTO(list, false)).filter(Objects::nonNull).collect(Collectors.toList());
+        return lists.stream().map(list -> toDTO(list, true)).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     public static List toDTO(com.pawoolley.model.List list) {
@@ -38,7 +43,6 @@ public class ListDTOConverter {
         List listDTO = new List();
         listDTO.setDescription(list.getDescription());
         listDTO.setId(list.getId());
-        listDTO.setListItemsCount(CollectionUtils.isEmpty(list.getListItems()) ? 0 : list.getListItems().size());
         listDTO.setListItems(isPopulated ? toDTOs(list.getListItems()) : null);
         listDTO.setName(list.getName());
         listDTO.setCreatedAt(list.getCreatedAt());
